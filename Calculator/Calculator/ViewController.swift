@@ -19,91 +19,90 @@ class ViewController: UIViewController {
     @IBAction func equal(_ sender: Any) {
        
        var aux = ""
-       var someInts: [String] = []
+       var operationInArray: [String] = []
         
         for char in mainLabel.text! {
             if char == "0" || char == "1" || char == "2" || char == "3" || char == "4" || char == "5" || char == "6" || char == "7" || char == "8" || char == "9"{
                 aux = aux + String(char)
             }else{
-                someInts.append(aux)
-                someInts.append(String(char))
+                operationInArray.append(aux)
+                operationInArray.append(String(char))
                 aux = ""
                 
             }
             
+            
         }
-        someInts.append(aux)
-        operations(some: &someInts)
+        operationInArray.append(aux)
+        operations(operationsArray: &operationInArray, i: 0)
         
         
     }
     
-    func operations(some: inout [String]){
-        var i = 0
+    func operations(operationsArray: inout [String], i: Int){
         
-        var aux: Double
-        while i >= 0  && i < some.count {
-            if some.contains("/") == true || some.contains("*") == true{
-                if some[i].contains("/") == true {
-                    aux = Double(some[i - 1])! / Double(some[i + 1])!
-                    some.remove(at: i + 1)
+        var i = i
+        
+        var aux: Float
+        
+            if operationsArray.contains("/") == true || operationsArray.contains("*") == true{
+                if operationsArray[i].contains("/") == true {
+                    aux = Float(operationsArray[i - 1])! / Float(operationsArray[i + 1])!
+                    operationsArray.remove(at: i + 1)
                     i -= 1
-                    some.remove(at: i + 1)
-                    some[i] = String(aux)
+                    operationsArray.remove(at: i + 1)
+                    operationsArray[i] = String(aux)
                     aux = 0
-                }else if some[i].contains("*") == true {
-                    aux = Double(some[i - 1])! * Double(some[i + 1])!
-                    some.remove(at: i + 1)
+                }else if operationsArray[i].contains("*") == true {
+                    aux = Float(operationsArray[i - 1])! * Float(operationsArray[i + 1])!
+                    operationsArray.remove(at: i + 1)
                     i -= 1
-                    some.remove(at: i + 1)
-                    some[i] = String(aux)
+                    operationsArray.remove(at: i + 1)
+                    operationsArray[i] = String(aux)
                     aux = 0
                 }
+                operations(operationsArray: &operationsArray, i: i + 1)
             }
-                i += 1
-            }
-        
+
         i = 0
-        while i >= 0  && i < some.count {
-            if some.contains("-") == true || some.contains("+") == true{
-                if some[i].contains("+") == true {
-                    aux = Double(some[i - 1])! + Double(some[i + 1])!
-                    some.remove(at: i + 1)
+        
+        while i >= 0  && i < operationsArray.count && operationsArray.count > 2{
+            if operationsArray.contains("-") == true || operationsArray.contains("+") == true{
+                if operationsArray[i].contains("+") == true {
+                    aux = Float(operationsArray[i - 1])! + Float(operationsArray[i + 1])!
+                    operationsArray.remove(at: i + 1)
                     i -= 1
-                    some.remove(at: i + 1)
-                    some[i] = String(aux)
+                    operationsArray.remove(at: i + 1)
+                    operationsArray[i] = String(aux)
                     aux = 0
                     
-                }else if some[i].contains("-") == true {
-                    aux = Double(some[i - 1])! - Double(some[i + 1])!
-                    some.remove(at: i + 1)
+                }else if operationsArray[i].contains("-") == true {
+                    aux = Float(operationsArray[i - 1])! - Float(operationsArray[i + 1])!
+                    operationsArray.remove(at: i + 1)
                     i -= 1
-                    some.remove(at: i + 1)
-                    some[i] = String(aux)
+                    operationsArray.remove(at: i + 1)
+                    operationsArray[i] = String(aux)
                     aux = 0
                 }
+                i += 1
             }
-            i += 1
         }
-        let num4 = some[0]
-        let num3 = String(num4).components(separatedBy: ".")
         
-        if Int(num3[1]) == 0 {
-            let num5 = Int(num4)
-            mainLabel.text = num3[0]
+        
+        let result = String(operationsArray[0]).components(separatedBy: ".")
+        if Int(result[1]) == 0 {
+            mainLabel.text = result[0]
         }else{
-                        mainLabel.text = some[0]
+            mainLabel.text = operationsArray[0]
         }
           
-//        for num in some {
+        //        for num in some {
 //            if num == "*"{
 //                let num1 = num.index(before: num.endIndex)
 //                print(num1)
 //                result = Int(num.index(before: num)) * Int(num.index(after: num))
 //            }
 //        }
-        
-        
     }
     
     @IBAction func plusOrLessBotton(_ sender: Any) {

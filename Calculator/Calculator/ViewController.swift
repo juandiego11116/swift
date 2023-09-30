@@ -18,42 +18,37 @@ class ViewController: UIViewController {
     
     @IBAction func equal(_ sender: Any) {
        
-       var aux = ""
-       var operationInArray: [String] = []
+        var aux: String = ""
+        var operationInArray: [String] = []
         
-        for char in mainLabel.text! {
-            if char == "0" || char == "1" || char == "2" || char == "3" || char == "4" || char == "5" || char == "6" || char == "7" || char == "8" || char == "9"{
+        for char in mainLabel.text ?? "0" {
+            if char.isNumber || char == "."{
                 aux = aux + String(char)
-            }else{
+            } else {
                 operationInArray.append(aux)
                 operationInArray.append(String(char))
                 aux = ""
-                
             }
-            
-            
         }
         operationInArray.append(aux)
-        operations(operationsArray: &operationInArray, i: 0)
-        
-        
+        print(operationInArray)
+        operations( with: &operationInArray, i: 0)
     }
     
-    func operations(operationsArray: inout [String], i: Int){
+    func operations(with operationsArray: inout [String], i: Int){
         
         var i = i
-        
         var aux: Float
         
-            if operationsArray.contains("/") == true || operationsArray.contains("*") == true{
-                if operationsArray[i].contains("/") == true {
+            if operationsArray.contains("/") || operationsArray.contains("*"){
+                if operationsArray[i].contains("/") {
                     aux = Float(operationsArray[i - 1])! / Float(operationsArray[i + 1])!
                     operationsArray.remove(at: i + 1)
                     i -= 1
                     operationsArray.remove(at: i + 1)
                     operationsArray[i] = String(aux)
                     aux = 0
-                }else if operationsArray[i].contains("*") == true {
+                } else if operationsArray[i].contains("*") {
                     aux = Float(operationsArray[i - 1])! * Float(operationsArray[i + 1])!
                     operationsArray.remove(at: i + 1)
                     i -= 1
@@ -61,14 +56,14 @@ class ViewController: UIViewController {
                     operationsArray[i] = String(aux)
                     aux = 0
                 }
-                operations(operationsArray: &operationsArray, i: i + 1)
+                operations(with: &operationsArray, i: i + 1)
             }
 
         i = 0
         
         while i >= 0  && i < operationsArray.count && operationsArray.count > 2{
-            if operationsArray.contains("-") == true || operationsArray.contains("+") == true{
-                if operationsArray[i].contains("+") == true {
+            if operationsArray.contains("-") || operationsArray.contains("+") {
+                if operationsArray[i].contains("+") {
                     aux = Float(operationsArray[i - 1])! + Float(operationsArray[i + 1])!
                     operationsArray.remove(at: i + 1)
                     i -= 1
@@ -76,7 +71,7 @@ class ViewController: UIViewController {
                     operationsArray[i] = String(aux)
                     aux = 0
                     
-                }else if operationsArray[i].contains("-") == true {
+                } else if operationsArray[i].contains("-") {
                     aux = Float(operationsArray[i - 1])! - Float(operationsArray[i + 1])!
                     operationsArray.remove(at: i + 1)
                     i -= 1
@@ -88,144 +83,36 @@ class ViewController: UIViewController {
             }
         }
         
+        let formatter = NumberFormatter()
         
-        let result = String(operationsArray[0]).components(separatedBy: ".")
-        if Int(result[1]) == 0 {
-            mainLabel.text = result[0]
-        }else{
+        if operationsArray[0].hasSuffix(".0") {
+            mainLabel.text = formatter.string(from: Double(operationsArray[0])! as NSNumber) ?? "n/a"
+        } else {
             mainLabel.text = operationsArray[0]
         }
-          
-        //        for num in some {
-//            if num == "*"{
-//                let num1 = num.index(before: num.endIndex)
-//                print(num1)
-//                result = Int(num.index(before: num)) * Int(num.index(after: num))
-//            }
-//        }
     }
     
-    @IBAction func plusOrLessBotton(_ sender: Any) {
-        if mainLabel.text == "0" {
-            
-            
-        }else if mainLabel.text?.first == "-" {
+    @IBAction func addOrSubtractButton(_ sender: Any) {
+      if mainLabel.text?.first == "-" {
             mainLabel.text?.removeFirst()
-        }
-        else if mainLabel.text?.first != "-" && mainLabel.text?.first != "0" {
+        } else if mainLabel.text?.first != "-" && mainLabel.text?.first != "0" {
             mainLabel.text = "-" + mainLabel.text!
         }
     }
     
     @IBAction func percentage(_ sender: Any) {
         
-        mainLabel.text = String(Double(mainLabel.text!)! * Double(0.01))
+        mainLabel.text = String((Double(mainLabel.text ?? "0") ?? 0) * Double(0.01))
     }
     
-    @IBAction func divide(_ sender: Any) {
+    @IBAction func operationsButton(_ sender: UIButton) {
         if mainLabel.text == "0"{
             
             
         } else if mainLabel.text?.last == "/" || mainLabel.text?.last == "*" || mainLabel.text?.last == "+" || mainLabel.text?.last == "-" {
             
-        }else{
-            mainLabel.text?.append("/")
-        }
-        
-//        if mainLabel.text?.last == "/" || mainLabel.text?.last == "*" || mainLabel.text?.last == "+" || mainLabel.text?.last == "-" || mainLabel.text == "0" {
-//
-//        }else if ((mainLabel.text?.contains("/")) == true){
-//            let number1 = mainLabel.text?.components(separatedBy: "/")
-//            let num1 = Double((number1?[0])!)
-//            let num2 = Double((number1?[1])!)
-//            let num3 = Double(num1!) / Double(num2!)
-//            let num4 = String(num3).components(separatedBy: ".")
-//
-//            if Int(num4[1] ) == 0 {
-//
-//                mainLabel.text = String(Int(num3))
-//            }else{
-//                mainLabel.text = String(num3)
-//
-//            }
-//        }else if ((mainLabel.text?.contains("*")) == true) {
-//            let number1 = mainLabel.text?.components(separatedBy: "*")
-//            let num1 = Double((number1?[0])!)
-//            let num2 = Double((number1?[1])!)
-//            let num3 = Double(num1!) * Double(num2!)
-//            let num4 = String(num3).components(separatedBy: ".")
-//
-//            if Int(num4[1] ) == 0 {
-//
-//                mainLabel.text = String(Int(num3))
-//            }else{
-//                mainLabel.text = String(num3)
-//
-//            }
-//        }else if ((mainLabel.text?.contains("-")) == true) {
-//            let number1 = mainLabel.text?.components(separatedBy: "-")
-//            let num1 = Double((number1?[0])!)
-//            let num2 = Double((number1?[1])!)
-//            let num3 = Double(num1!) - Double(num2!)
-//            let num4 = String(num3).components(separatedBy: ".")
-//
-//            if Int(num4[1] ) == 0 {
-//
-//                mainLabel.text = String(Int(num3))
-//            }else{
-//                mainLabel.text = String(num3)
-//
-//            }
-//        }else if ((mainLabel.text?.contains("+")) == true) {
-//            let number1 = mainLabel.text?.components(separatedBy: "+")
-//            let num1 = Double((number1?[0])!)
-//            let num2 = Double((number1?[1])!)
-//            let num3 = Double(num1!) + Double(num2!)
-//            let num4 = String(num3).components(separatedBy: ".")
-//
-//            if Int(num4[1] ) == 0 {
-//
-//                mainLabel.text = String(Int(num3))
-//            }else{
-//                mainLabel.text = String(num3)
-//            }
-//        }
-//        else{
-//            mainLabel.text?.append("/")
-//        }
-    }
-    
-    
-    @IBAction func multiplication(_ sender: Any) {
-        if mainLabel.text == "0"{
-            
-            
-        } else if mainLabel.text?.last == "/" || mainLabel.text?.last == "*" || mainLabel.text?.last == "+" || mainLabel.text?.last == "-" {
-            
-        }else{
-            mainLabel.text?.append("*")
-        }
-    }
-    
-    @IBAction func less(_ sender: Any) {
-        if mainLabel.text == "0"{
-            
-            
-        } else if mainLabel.text?.last == "/" || mainLabel.text?.last == "*" || mainLabel.text?.last == "+" || mainLabel.text?.last == "-" {
-            
-        }else{
-            mainLabel.text?.append("-")
-        }
-    }
-    
-    @IBAction func plus(_ sender: Any) {
-        if mainLabel.text == "0"{
-            
-            
-        } else if mainLabel.text?.last == "/" || mainLabel.text?.last == "*" || mainLabel.text?.last == "+" || mainLabel.text?.last == "-" {
-            
-        }else{
-            mainLabel.text?.append("+")
+        } else {
+            mainLabel.text?.append(sender.titleLabel!.text ?? "0")
         }
     }
     
@@ -233,101 +120,16 @@ class ViewController: UIViewController {
         mainLabel.text = "0"
     }
     
+    @IBAction func numbers(_ sender: UIButton) {
+        mainLabel.text == "0" ? mainLabel.text = sender.titleLabel!.text : mainLabel.text?.append(sender.titleLabel!.text ?? "0")
+    }
+    
     @IBAction func pointDecimal(_ sender: Any) {
         if ((mainLabel.text?.contains(".")) == false){
             mainLabel.text?.append(".")
-        }else{
+        } else {
             mainLabel.text = mainLabel.text
-            
         }
     }
-    
-    @IBAction func nineNumber(_ sender: Any) {
-        if mainLabel.text == "0"{
-            mainLabel.text = "9"
-            
-        }else{
-            mainLabel.text?.append("9")
-        }
-    }
-    @IBAction func eightNumber(_ sender: Any) {
-        if mainLabel.text == "0"{
-            mainLabel.text = "8"
-            
-        }else{
-            mainLabel.text?.append("8")
-        }
-    }
-    @IBAction func sevenNumber(_ sender: Any) {
-        if mainLabel.text == "0"{
-            mainLabel.text = "7"
-            
-        }else{
-            mainLabel.text?.append("7")
-        }
-    }
-    
-    @IBAction func sixNumber(_ sender: Any) {
-        if mainLabel.text == "0"{
-            mainLabel.text = "6"
-            
-        }else{
-            mainLabel.text?.append("6")
-        }
-    }
-    
-    @IBAction func fiveNumber(_ sender: Any) {
-        if mainLabel.text == "0"{
-            mainLabel.text = "5"
-            
-        }else{
-            mainLabel.text?.append("5")
-        }
-    }
-    
-    @IBAction func fourNumber(_ sender: Any) {
-        if mainLabel.text == "0"{
-            mainLabel.text = "4"
-            
-        }else{
-            mainLabel.text?.append("4")
-        }
-    }
-    
-    @IBAction func threeNumber(_ sender: Any) {
-        if mainLabel.text == "0"{
-            mainLabel.text = "3"
-            
-        }else{
-            mainLabel.text?.append("3")
-        }
-    }
-    @IBAction func twoNumber(_ sender: Any) {
-        if mainLabel.text == "0"{
-            mainLabel.text = "2"
-            
-        }else{
-            mainLabel.text?.append("2")
-        }
-    }
-    
-    @IBAction func oneNumber(_ sender: Any) {
-        if mainLabel.text == "0"{
-            mainLabel.text = "1"
-            
-        }else{
-            mainLabel.text?.append("1")
-        }
-    }
-    
-    @IBAction func zeroNumber(_ sender: Any) {
-        if mainLabel.text == "0"{
-            mainLabel.text = "0"
-            
-        }else{
-            mainLabel.text?.append("0")
-        }
-    }
-    
 }
 

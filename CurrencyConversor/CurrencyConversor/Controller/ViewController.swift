@@ -12,7 +12,7 @@ class ViewController: UIViewController {
    
     @IBOutlet weak var currencyOrigen: UITextField!
     @IBOutlet weak var currencyResult: UILabel!
-    @IBOutlet weak var origenLabel: UILabel!
+    @IBOutlet weak var mainLabel: UILabel!
     @IBOutlet weak var resultLabel: UILabel!
     @IBOutlet weak var currencyPicker: UIPickerView!
     
@@ -31,10 +31,10 @@ class ViewController: UIViewController {
         view.addGestureRecognizer(tap)
         
     }
+    
     @objc func dismissKeyboard() {
-            //Las vistas y toda la jerarquía renuncia a responder, para esconder el teclado
-            view.endEditing(true)
-        }
+        view.endEditing(true)
+    }
 }
 
 extension ViewController: CalculadorManagerDelegate{
@@ -69,7 +69,7 @@ extension ViewController: UIPickerViewDelegate, UIPickerViewDataSource {
         switch(component){
         case 0:
             origenCurrency = calculatorManager.currencyArray[component][row]
-            origenLabel.text = origenCurrency
+            mainLabel.text = origenCurrency
             
             break;
         case 1:

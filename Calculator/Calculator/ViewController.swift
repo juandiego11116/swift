@@ -31,7 +31,6 @@ class ViewController: UIViewController {
             }
         }
         operationInArray.append(aux)
-        print(operationInArray)
         operations( with: &operationInArray, i: 0)
     }
     
@@ -101,16 +100,13 @@ class ViewController: UIViewController {
     }
     
     @IBAction func percentage(_ sender: Any) {
-        
         mainLabel.text = String((Double(mainLabel.text ?? "0") ?? 0) * Double(0.01))
     }
     
     @IBAction func operationsButton(_ sender: UIButton) {
-        if mainLabel.text == "0"{
-            
-            
-        } else if mainLabel.text?.last == "/" || mainLabel.text?.last == "*" || mainLabel.text?.last == "+" || mainLabel.text?.last == "-" {
-            
+        let characterSet: String = "+-*/0"
+        
+        if characterSet.contains(String((mainLabel.text?.last)!)) {
         } else {
             mainLabel.text?.append(sender.titleLabel!.text ?? "0")
         }

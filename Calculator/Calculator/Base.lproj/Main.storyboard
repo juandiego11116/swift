@@ -59,7 +59,7 @@
                                                                     </backgroundConfiguration>
                                                                 </buttonConfiguration>
                                                                 <connections>
-                                                                    <action selector="ACBotton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="MIy-Ko-VFc"/>
+                                                                    <action selector="ACButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="MIy-Ko-VFc"/>
                                                                 </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nwt-4P-Czn">
@@ -71,7 +71,7 @@
                                                                     </backgroundConfiguration>
                                                                 </buttonConfiguration>
                                                                 <connections>
-                                                                    <action selector="addOrSubtractButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="iYk-fY-uui"/>
+                                                                    <action selector="plusMinusButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="iYk-fY-uui"/>
                                                                 </connections>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V1P-9R-9E9">

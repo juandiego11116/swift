@@ -13,7 +13,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var mainLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
     }
     
     @IBAction func equal(_ sender: Any) {
@@ -23,7 +22,7 @@ class ViewController: UIViewController {
         
         for char in mainLabel.text ?? "0" {
             if char.isNumber || char == "."{
-                aux = aux + String(char)
+                 aux.append(char)
             } else {
                 operationInArray.append(aux)
                 operationInArray.append(String(char))
@@ -91,11 +90,11 @@ class ViewController: UIViewController {
         }
     }
     
-    @IBAction func addOrSubtractButton(_ sender: Any) {
+    @IBAction func plusMinusButton(_ sender: Any) {
       if mainLabel.text?.first == "-" {
             mainLabel.text?.removeFirst()
         } else if mainLabel.text?.first != "-" && mainLabel.text?.first != "0" {
-            mainLabel.text = "-" + mainLabel.text!
+            mainLabel.text = "-" + (mainLabel.text ?? "0")
         }
     }
     
@@ -104,20 +103,22 @@ class ViewController: UIViewController {
     }
     
     @IBAction func operationsButton(_ sender: UIButton) {
-        let characterSet: String = "+-*/0"
+       
+        var characterSet = CharacterSet.init()
+        characterSet.insert(charactersIn: "+-*/0")
         
-        if characterSet.contains(String((mainLabel.text?.last)!)) {
+        if characterSet.contains(Unicode.Scalar(String((mainLabel.text?.last) ?? "0")) ?? "0") {
         } else {
-            mainLabel.text?.append(sender.titleLabel!.text ?? "0")
+            mainLabel.text?.append(sender.titleLabel?.text ?? "0")
         }
     }
     
-    @IBAction func ACBotton(_ sender: Any) {
+    @IBAction func ACButton(_ sender: Any) {
         mainLabel.text = "0"
     }
     
     @IBAction func numbers(_ sender: UIButton) {
-        mainLabel.text == "0" ? mainLabel.text = sender.titleLabel!.text : mainLabel.text?.append(sender.titleLabel!.text ?? "0")
+        mainLabel.text == "0" ? mainLabel.text = sender.titleLabel?.text : mainLabel.text?.append(sender.titleLabel?.text ?? "0")
     }
     
     @IBAction func pointDecimal(_ sender: Any) {

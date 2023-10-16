@@ -16,7 +16,7 @@
 		D0371BC02A9D7FD10097587A /* CurrencyConversorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0371BBF2A9D7FD10097587A /* CurrencyConversorTests.swift */; };
 		D0371BCA2A9D7FD10097587A /* CurrencyConversorUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0371BC92A9D7FD10097587A /* CurrencyConversorUITests.swift */; };
 		D0371BCC2A9D7FD10097587A /* CurrencyConversorUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0371BCB2A9D7FD10097587A /* CurrencyConversorUITestsLaunchTests.swift */; };
-		D038B17D2A9EC79D0088BD02 /* ConversorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D038B17C2A9EC79D0088BD02 /* ConversorModel.swift */; };
+		D038B17D2A9EC79D0088BD02 /* ExchangeRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D038B17C2A9EC79D0088BD02 /* ExchangeRate.swift */; };
 		D038B17F2A9EC7D20088BD02 /* ConversorData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D038B17E2A9EC7D20088BD02 /* ConversorData.swift */; };
 		D038B1832A9ECEB80088BD02 /* CalculatorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D038B1822A9ECEB80088BD02 /* CalculatorManager.swift */; };
 /* End PBXBuildFile section */
@@ -52,7 +52,7 @@
 		D0371BC52A9D7FD10097587A /* CurrencyConversorUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CurrencyConversorUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0371BC92A9D7FD10097587A /* CurrencyConversorUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyConversorUITests.swift; sourceTree = "<group>"; };
 		D0371BCB2A9D7FD10097587A /* CurrencyConversorUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyConversorUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		D038B17C2A9EC79D0088BD02 /* ConversorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversorModel.swift; sourceTree = "<group>"; };
+		D038B17C2A9EC79D0088BD02 /* ExchangeRate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRate.swift; sourceTree = "<group>"; };
 		D038B17E2A9EC7D20088BD02 /* ConversorData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversorData.swift; sourceTree = "<group>"; };
 		D038B1822A9ECEB80088BD02 /* CalculatorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -137,7 +137,7 @@
 		D0371BD82A9D8A2B0097587A /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				D038B17C2A9EC79D0088BD02 /* ConversorModel.swift */,
+				D038B17C2A9EC79D0088BD02 /* ExchangeRate.swift */,
 				D038B17E2A9EC7D20088BD02 /* ConversorData.swift */,
 				D038B1822A9ECEB80088BD02 /* CalculatorManager.swift */,
 			);
@@ -295,7 +295,7 @@
 				D0371BA92A9D7FCE0097587A /* AppDelegate.swift in Sources */,
 				D038B17F2A9EC7D20088BD02 /* ConversorData.swift in Sources */,
 				D038B1832A9ECEB80088BD02 /* CalculatorManager.swift in Sources */,
-				D038B17D2A9EC79D0088BD02 /* ConversorModel.swift in Sources */,
+				D038B17D2A9EC79D0088BD02 /* ExchangeRate.swift in Sources */,
 				D0371BAB2A9D7FCE0097587A /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -124,8 +124,6 @@ class ViewController: UIViewController {
     @IBAction func pointDecimal(_ sender: Any) {
         if ((mainLabel.text?.contains(".")) == false){
             mainLabel.text?.append(".")
-        } else {
-            mainLabel.text = mainLabel.text
         }
     }
 }

@@ -83,7 +83,7 @@
                         <outlet property="currencyOrigen" destination="2V5-e2-Fqv" id="3S1-uM-9lm"/>
                         <outlet property="currencyPicker" destination="rtB-HA-Qe6" id="Hyw-wN-rTM"/>
                         <outlet property="currencyResult" destination="fnl-UK-vr8" id="Jdg-zl-nTD"/>
-                        <outlet property="origenLabel" destination="OWT-Kd-g4I" id="TpG-Wi-Qyx"/>
+                        <outlet property="mainLabel" destination="OWT-Kd-g4I" id="TpG-Wi-Qyx"/>
                         <outlet property="resultLabel" destination="fzT-ZB-lts" id="3qM-Ki-gV9"/>
                     </connections>
                 </viewController>
